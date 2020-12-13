@@ -7,7 +7,7 @@
     <PackageId>Byndyusoft.Net.Http.Json</PackageId>
     <Title>Byndyusoft.Net.Http.Json</Title>
     <Authors>Byndyusoft</Authors>
-    <Description>This package adds JsonMediaTypeFormatter class for formatting HttpClient requests and responses</Description>
+    <Description>Provides extension methods for System.Net.Http.HttpClient and System.Net.Http.HttpContent that perform automatic serialization and deserialization using System.Text.Json.</Description>
     <PackageTags>Byndyusoft;Json;HttpClient;WebApi;AspNet</PackageTags>
     <RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.Json</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
