@@ -15,7 +15,7 @@ namespace System.Net.Http.Json
             var writer = MediaTypeFormatterCollection.Default.FindWriter(typeof(string), JsonDefaults.MediaTypeHeader);
             Assert.NotNull(writer);
             Assert.IsType<JsonMediaTypeFormatter>(writer);
-            
+
             var reader = MediaTypeFormatterCollection.Default.FindReader(typeof(string), JsonDefaults.MediaTypeHeader);
             Assert.NotNull(reader);
             Assert.IsType<JsonMediaTypeFormatter>(reader);

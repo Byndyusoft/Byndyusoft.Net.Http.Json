@@ -8,7 +8,7 @@ namespace System.Net.Http.Json.Models
 
         public static ComplexType Create()
         {
-            return new ComplexType
+            return new()
             {
                 Inner = SimpleType.Create()
             };

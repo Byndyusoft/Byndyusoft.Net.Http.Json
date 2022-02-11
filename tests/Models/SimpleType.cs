@@ -18,7 +18,7 @@ namespace System.Net.Http.Json.Models
 
         public static SimpleType Create()
         {
-            return new SimpleType
+            return new()
             {
                 Property = 10,
                 Enum = SeekOrigin.Current,
