@@ -4,7 +4,7 @@ namespace System.Net.Http.Json.Models
 {
     public class ComplexType
     {
-        public SimpleType Inner { get; set; }
+        public SimpleType Inner { get; set; } = default!;
 
         public static ComplexType Create()
         {

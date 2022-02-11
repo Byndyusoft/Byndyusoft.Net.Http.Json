@@ -1,5 +1,5 @@
-﻿using System.Net.Http.Json.Models;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using System.Net.Http.Json.Models;
 
 namespace System.Net.Http.Json.Functional
 {

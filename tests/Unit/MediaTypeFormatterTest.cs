@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http.Formatting;
@@ -13,9 +13,9 @@ namespace System.Net.Http.Json.Unit
     public class MediaTypeFormatterTest
     {
         private readonly SystemTextJsonHttpContent _content;
-        private readonly TransportContext _context = null;
+        private readonly TransportContext? _context = null;
         private readonly JsonMediaTypeFormatter _formatter;
-        private readonly IFormatterLogger _logger = null;
+        private readonly IFormatterLogger? _logger = null;
 
         public MediaTypeFormatterTest()
         {
@@ -96,7 +96,7 @@ namespace System.Net.Http.Json.Unit
             // Act
             var exception =
                 await Assert.ThrowsAsync<ArgumentNullException>(
-                    () => _formatter.ReadFromStreamAsync(null, _content.Stream, _content, _logger));
+                    () => _formatter.ReadFromStreamAsync(null!, _content.Stream, _content, _logger));
 
             // Assert
             Assert.Equal("type", exception.ParamName);
@@ -108,7 +108,7 @@ namespace System.Net.Http.Json.Unit
             // Act
             var exception =
                 await Assert.ThrowsAsync<ArgumentNullException>(
-                    () => _formatter.ReadFromStreamAsync(typeof(object), null, _content, _logger));
+                    () => _formatter.ReadFromStreamAsync(typeof(object), null!, _content, _logger));
 
             // Assert
             Assert.Equal("readStream", exception.ParamName);
@@ -118,7 +118,7 @@ namespace System.Net.Http.Json.Unit
         public async Task ReadFromStreamAsync_ReadsNullObject()
         {
             // Assert
-            await _content.WriteObjectAsync<object>(null);
+            await _content.WriteObjectAsync<object>(null!);
 
             // Act
             var result = await _formatter.ReadFromStreamAsync(typeof(object), _content.Stream, _content, _logger);
@@ -180,7 +180,7 @@ namespace System.Net.Http.Json.Unit
             // Act
             var exception =
                 await Assert.ThrowsAsync<ArgumentNullException>(
-                    () => _formatter.WriteToStreamAsync(null, new object(), _content.Stream, _content, _context));
+                    () => _formatter.WriteToStreamAsync(null!, new object(), _content.Stream, _content, _context));
 
             // Assert
             Assert.Equal("type", exception.ParamName);
@@ -192,7 +192,7 @@ namespace System.Net.Http.Json.Unit
             // Act
             var exception =
                 await Assert.ThrowsAsync<ArgumentNullException>(
-                    () => _formatter.WriteToStreamAsync(typeof(object), new object(), null, _content, _context));
+                    () => _formatter.WriteToStreamAsync(typeof(object), new object(), null!, _content, _context));
 
             // Assert
             Assert.Equal("writeStream", exception.ParamName);
@@ -236,7 +236,7 @@ namespace System.Net.Http.Json.Unit
             // Assert
             var result = await _content.ReadObjectAsync<SimpleType>();
             Assert.NotEqual(0, _content.Headers.ContentLength);
-            result.Verify();
+            result!.Verify();
         }
 
         [Fact]
@@ -251,7 +251,7 @@ namespace System.Net.Http.Json.Unit
             // Assert
             var result = await _content.ReadObjectAsync<ComplexType>();
             Assert.NotEqual(0, _content.Headers.ContentLength);
-            result.Verify();
+            result!.Verify();
         }
 
         private class SystemTextJsonHttpContent : StreamContent
@@ -268,7 +268,7 @@ namespace System.Net.Http.Json.Unit
             }
 
             public MemoryStream Stream { get; }
-            public JsonSerializerOptions SerializerOptions { get; }
+            private JsonSerializerOptions SerializerOptions { get; } = default!;
 
             public async Task WriteObjectAsync<T>(T value)
             {
@@ -276,7 +276,7 @@ namespace System.Net.Http.Json.Unit
                 Stream.Position = 0;
             }
 
-            public async Task<T> ReadObjectAsync<T>()
+            public async Task<T?> ReadObjectAsync<T>()
             {
                 Stream.Position = 0;
                 return await JsonSerializer.DeserializeAsync<T>(Stream, SerializerOptions);

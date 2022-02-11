@@ -1,7 +1,7 @@
-﻿using System.Net.Http.Json.Formatting;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http.Json.Formatting;
 using System.Net.Http.Json.Models;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace System.Net.Http.Json.Functional
@@ -30,9 +30,9 @@ namespace System.Net.Http.Json.Functional
         public async Task PostAsync_NullObject()
         {
             // Act
-            var response = await Client.PostAsync<SimpleType>("/json-formatter", null, _formatter);
+            var response = await Client.PostAsync<SimpleType>("/json-formatter", null!, _formatter);
             response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadAsAsync<SimpleType>(new[] {_formatter});
+            var result = await response.Content.ReadAsAsync<SimpleType>(new[] { _formatter });
 
             // Assert
             Assert.Null(result);
@@ -44,7 +44,7 @@ namespace System.Net.Http.Json.Functional
             // Act
             var response = await Client.PostAsync("/json-formatter", SimpleType.Create(), _formatter);
             response.EnsureSuccessStatusCode();
-            var result = await response.Content.ReadAsAsync<SimpleType>(new[] {_formatter});
+            var result = await response.Content.ReadAsAsync<SimpleType>(new[] { _formatter });
 
             // Assert
             Assert.NotNull(result);
@@ -56,7 +56,7 @@ namespace System.Net.Http.Json.Functional
         public async Task PutAsync_NullObject()
         {
             // Act
-            var response = await Client.PutAsync<SimpleType>("/json-formatter", null, _formatter);
+            var response = await Client.PutAsync<SimpleType>("/json-formatter", null!, _formatter);
             response.EnsureSuccessStatusCode();
             var result = await response.Content.ReadAsAsync<SimpleType>(new[] { _formatter });
 

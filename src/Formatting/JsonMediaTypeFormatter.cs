@@ -1,4 +1,4 @@
-﻿using System.IO;
+using System.IO;
 using System.Net.Http.Formatting;
 using System.Text;
 using System.Text.Json;
@@ -35,7 +35,7 @@ namespace System.Net.Http.Json.Formatting
         /// <param name="serializerOptions">Options for running serialization.</param>
         public JsonMediaTypeFormatter(JsonSerializerOptions serializerOptions)
         {
-            SerializerOptions = serializerOptions ?? throw new ArgumentNullException(nameof(serializerOptions));
+            SerializerOptions = Guard.NotNull(serializerOptions, nameof(serializerOptions));
 
             SupportedEncodings.Add(Utf8EncodingWithoutBom);
             SupportedEncodings.Add(Utf16EncodingLittleEndian);
@@ -48,58 +48,35 @@ namespace System.Net.Http.Json.Formatting
         public JsonSerializerOptions SerializerOptions { get; }
 
         /// <inheritdoc />
-        public override Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content,
-            IFormatterLogger formatterLogger)
+        public override async Task<object?> ReadFromStreamAsync(Type type, Stream readStream, HttpContent? content,
+            IFormatterLogger? formatterLogger, CancellationToken cancellationToken = default)
         {
-            if (type == null) throw new ArgumentNullException(nameof(type));
-            if (readStream == null) throw new ArgumentNullException(nameof(readStream));
-            if (content == null) throw new ArgumentNullException(nameof(content));
+            Guard.NotNull(type, nameof(type));
+            Guard.NotNull(readStream, nameof(readStream));
 
-            return ReadFromStreamAsync(type, readStream, content, formatterLogger, CancellationToken.None);
+            if (content is ObjectContent objectContent)
+                return objectContent.Value;
+
+            var length = content?.Headers.ContentLength ?? -1;
+            if (length == 0)
+                return null;
+
+            return await JsonSerializer.DeserializeAsync(readStream, type, SerializerOptions, cancellationToken)
+                .ConfigureAwait(false);
         }
 
         /// <inheritdoc />
-        public override async Task<object> ReadFromStreamAsync(Type type, Stream readStream, HttpContent content,
-            IFormatterLogger formatterLogger,
-            CancellationToken cancellationToken)
+        public override Task WriteToStreamAsync(Type type, object? value, Stream writeStream, HttpContent? content,
+            TransportContext? transportContext, CancellationToken cancellationToken = default)
         {
-            if (type == null) throw new ArgumentNullException(nameof(type));
-            if (readStream == null) throw new ArgumentNullException(nameof(readStream));
-            if (content == null) throw new ArgumentNullException(nameof(content));
+            Guard.NotNull(type, nameof(type));
+            Guard.NotNull(writeStream, nameof(writeStream));
 
-            if (content is JsonContent jsonContent)
-                return jsonContent.Value;
-
-            return await content.ReadFromJsonAsync(type, SerializerOptions, cancellationToken).ConfigureAwait(false);
+            return JsonSerializer.SerializeAsync(writeStream, value, type, SerializerOptions, cancellationToken);
         }
 
-        /// <inheritdoc />
-        public override Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
-            TransportContext transportContext)
-        {
-            return WriteToStreamAsync(type, value, writeStream, content, transportContext, CancellationToken.None);
-        }
+        public override bool CanReadType(Type type) => true;
 
-        public override async Task WriteToStreamAsync(Type type, object value, Stream writeStream, HttpContent content,
-            TransportContext transportContext, CancellationToken cancellationToken)
-        {
-            if (type == null) throw new ArgumentNullException(nameof(type));
-            if (writeStream == null) throw new ArgumentNullException(nameof(writeStream));
-            if (content == null) throw new ArgumentNullException(nameof(content));
-
-            var protoBufContent = content as JsonContent ?? JsonContent.Create(value, type, options: SerializerOptions);
-            await protoBufContent.CopyToAsync(writeStream).ConfigureAwait(false);
-            content.Headers.ContentLength = protoBufContent.Headers.ContentLength;
-        }
-
-        public override bool CanReadType(Type type)
-        {
-            return true;
-        }
-
-        public override bool CanWriteType(Type type)
-        {
-            return true;
-        }
+        public override bool CanWriteType(Type type) => true;
     }
 }

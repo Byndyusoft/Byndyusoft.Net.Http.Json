@@ -9,7 +9,7 @@ namespace System.Net.Http.Json
         public static readonly string MediaType = MediaTypes.ApplicationJson;
 
         public static readonly MediaTypeWithQualityHeaderValue MediaTypeHeader =
-            new MediaTypeWithQualityHeaderValue(MediaType) {CharSet = "utf-8"};
+            new MediaTypeWithQualityHeaderValue(MediaType) { CharSet = "utf-8" };
 
         public static JsonSerializerOptions SerializerOptions => new JsonSerializerOptions(JsonSerializerDefaults.Web);
 
