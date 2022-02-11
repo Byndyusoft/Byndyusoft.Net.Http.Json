@@ -6,7 +6,7 @@ namespace System.Net.Http.Json.Models
 {
     public class SimpleType
     {
-        [JsonInclude] public string Field;
+        [JsonInclude] public string Field = default!;
 
         public int Property { get; set; }
 
@@ -14,16 +14,16 @@ namespace System.Net.Http.Json.Models
 
         public int? Nullable { get; set; }
 
-        public int[] Array { get; set; }
+        public int[] Array { get; set; } = default!;
 
         public static SimpleType Create()
         {
-            return new SimpleType
+            return new()
             {
                 Property = 10,
                 Enum = SeekOrigin.Current,
                 Field = "string",
-                Array = new[] {1, 2},
+                Array = new[] { 1, 2 },
                 Nullable = 100
             };
         }
