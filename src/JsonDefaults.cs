@@ -8,7 +8,7 @@ namespace System.Net.Http.Json
         public static readonly string MediaTypeFormat = "json";
         public static readonly string MediaType = MediaTypes.ApplicationJson;
 
-        public static readonly MediaTypeWithQualityHeaderValue MediaTypeHeader = new(MediaType) { CharSet = "utf-8" };
+        public static readonly MediaTypeWithQualityHeaderValue MediaTypeHeader = new(MediaType) {CharSet = "utf-8"};
 
         public static JsonSerializerOptions SerializerOptions => new(JsonSerializerDefaults.Web);
 
@@ -16,7 +16,8 @@ namespace System.Net.Http.Json
         {
             public static readonly MediaTypeWithQualityHeaderValue ApplicationJson = new(MediaTypes.ApplicationJson);
 
-            public static readonly MediaTypeWithQualityHeaderValue ApplicationAnyJson = new(MediaTypes.ApplicationAnyJson);
+            public static readonly MediaTypeWithQualityHeaderValue ApplicationAnyJson =
+                new(MediaTypes.ApplicationAnyJson);
 
             public static readonly MediaTypeWithQualityHeaderValue TextJson = new(MediaTypes.TextJson);
         }
