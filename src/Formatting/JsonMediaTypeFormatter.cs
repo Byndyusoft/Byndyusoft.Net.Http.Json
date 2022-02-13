@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace System.Net.Http.Json.Formatting
 {
     /// <summary>
-    /// <see cref="MediaTypeFormatter"/> class to handle Json.
+    ///     <see cref="MediaTypeFormatter" /> class to handle Json.
     /// </summary>
     public class JsonMediaTypeFormatter : MediaTypeFormatter
     {
@@ -75,8 +75,14 @@ namespace System.Net.Http.Json.Formatting
             return JsonSerializer.SerializeAsync(writeStream, value, type, SerializerOptions, cancellationToken);
         }
 
-        public override bool CanReadType(Type type) => true;
+        public override bool CanReadType(Type type)
+        {
+            return true;
+        }
 
-        public override bool CanWriteType(Type type) => true;
+        public override bool CanWriteType(Type type)
+        {
+            return true;
+        }
     }
 }

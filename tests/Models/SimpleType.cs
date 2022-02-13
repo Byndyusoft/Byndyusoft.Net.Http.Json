@@ -23,7 +23,7 @@ namespace System.Net.Http.Json.Models
                 Property = 10,
                 Enum = SeekOrigin.Current,
                 Field = "string",
-                Array = new[] { 1, 2 },
+                Array = new[] {1, 2},
                 Nullable = 100
             };
         }
