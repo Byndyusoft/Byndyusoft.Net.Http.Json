@@ -1,28 +1,28 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  
-  <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
-    <RootNamespace>System.Net.Http.Json</RootNamespace>
-    <Version>0.2.0</Version>
-    <PackageId>Byndyusoft.Net.Http.Json</PackageId>
-    <Title>Byndyusoft.Net.Http.Json</Title>
-    <Authors>Byndyusoft</Authors>
-    <Description>Provides extension methods for System.Net.Http.HttpClient and System.Net.Http.HttpContent that perform automatic serialization and deserialization using System.Text.Json.</Description>
-    <PackageTags>Byndyusoft;Json;HttpClient;WebApi;AspNet</PackageTags>
-    <RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.Json</RepositoryUrl>
-    <RepositoryType>git</RepositoryType>
-    <PackageIcon>icon.png</PackageIcon>
-	  <PackageLicenseExpression>MIT</PackageLicenseExpression>
-	  <IsPackable>true</IsPackable>
-  </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\icon.png" Pack="true" PackagePath="icon.png" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFrameworks>netstandard2.0;net5.0</TargetFrameworks>
+		<RootNamespace>System.Net.Http.Json</RootNamespace>
+		<Version>0.2.1</Version>
+		<PackageId>Byndyusoft.Net.Http.Json</PackageId>
+		<Title>Byndyusoft.Net.Http.Json</Title>
+		<Authors>Byndyusoft</Authors>
+		<Description>Provides extension methods for System.Net.Http.HttpClient and System.Net.Http.HttpContent that perform automatic serialization and deserialization using System.Text.Json.</Description>
+		<PackageTags>Byndyusoft;Json;HttpClient;WebApi;AspNet</PackageTags>
+		<RepositoryUrl>https://github.com/Byndyusoft/Byndyusoft.Net.Http.Json</RepositoryUrl>
+		<RepositoryType>git</RepositoryType>
+		<PackageIcon>icon.png</PackageIcon>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<IsPackable>true</IsPackable>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Byndyusoft.Net.Http" Version="0.2.0" />
-    <PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
-  </ItemGroup>
-  
+	<ItemGroup>
+		<None Include="..\icon.png" Pack="true" PackagePath="icon.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Byndyusoft.Net.Http" Version="0.2.0" />
+		<PackageReference Include="System.Net.Http.Json" Version="5.0.0" />
+	</ItemGroup>
+
 </Project>
