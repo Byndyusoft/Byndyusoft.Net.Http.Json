@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="$(SolutionDir)\src\Byndyusoft.Net.Http.Json.csproj" />
+    <ProjectReference Include="..\src\Byndyusoft.Net.Http.Json.csproj" />
   </ItemGroup>
 
 </Project>
