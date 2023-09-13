@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
 		<RootNamespace>System.Net.Http.Json</RootNamespace>
-		<Version>0.3.0</Version>
+		<Version>0.3.1</Version>
 		<PackageId>Byndyusoft.Net.Http.Json</PackageId>
 		<Title>Byndyusoft.Net.Http.Json</Title>
 		<Authors>Byndyusoft</Authors>
@@ -14,10 +14,14 @@
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IsPackable>true</IsPackable>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<None Include="..\icon.png" Pack="true" PackagePath="icon.png" />
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\LICENSE.txt" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 
 	<ItemGroup>
