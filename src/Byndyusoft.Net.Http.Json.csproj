@@ -14,10 +14,14 @@
 		<PackageIcon>icon.png</PackageIcon>
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IsPackable>true</IsPackable>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<None Include="..\icon.png" Pack="true" PackagePath="icon.png" />
+		<None Include="..\README.md" Pack="true" PackagePath="\" />
+		<None Include="..\LICENSE.txt" Pack="true" PackagePath="\"/>
 	</ItemGroup>
 
 	<ItemGroup>
