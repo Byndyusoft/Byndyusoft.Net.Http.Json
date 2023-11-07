@@ -1,4 +1,7 @@
 #if NET6_0_OR_GREATER
+
+#pragma warning disable CA2255
+
 using System.Net.Http.Formatting;
 using System.Net.Http.Json.Formatting;
 using System.Runtime.CompilerServices;
