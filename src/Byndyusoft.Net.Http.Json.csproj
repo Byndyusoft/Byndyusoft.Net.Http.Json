@@ -3,7 +3,7 @@
 	<PropertyGroup>
 		<TargetFrameworks>netstandard2.0;net6.0</TargetFrameworks>
 		<RootNamespace>System.Net.Http.Json</RootNamespace>
-		<Version>0.3.1</Version>
+		<Version>0.3.2</Version>
 		<PackageId>Byndyusoft.Net.Http.Json</PackageId>
 		<Title>Byndyusoft.Net.Http.Json</Title>
 		<Authors>Byndyusoft</Authors>
@@ -21,8 +21,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Byndyusoft.Net.Http" Version="0.4.0" />
-		<PackageReference Include="System.Net.Http.Json" Version="7.0.0" />
+		<PackageReference Include="Byndyusoft.Net.Http" Version="0.4.4" />
+		<PackageReference Include="System.Net.Http.Json" Version="8.0.1" />
 	</ItemGroup>
 
 </Project>
