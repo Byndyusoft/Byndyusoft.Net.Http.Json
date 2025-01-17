@@ -1,5 +1,6 @@
 using System.Net.Http.Headers;
 using System.Text.Json;
+using System.Text.Json.Serialization.Metadata;
 
 namespace System.Net.Http.Json
 {
@@ -10,7 +11,10 @@ namespace System.Net.Http.Json
 
         public static readonly MediaTypeWithQualityHeaderValue MediaTypeHeader = new(MediaType) {CharSet = "utf-8"};
 
-        public static JsonSerializerOptions SerializerOptions => new(JsonSerializerDefaults.Web);
+        public static JsonSerializerOptions SerializerOptions => new(JsonSerializerDefaults.Web)
+        {
+            TypeInfoResolver = new DefaultJsonTypeInfoResolver()
+        };
 
         public static class MediaTypeHeaders
         {
